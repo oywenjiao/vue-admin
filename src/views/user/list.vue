@@ -1,5 +1,9 @@
 <template>
   <div>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="日期">
         <el-input v-model="formInline.date" placeholder="日期"></el-input>
@@ -19,6 +23,7 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">查询</el-button>
       </el-form-item>
+      <el-button type="primary" @click="add">添加数据</el-button>
     </el-form>
     <el-table :data="tableData" border style="width: 100%;">
       <el-table-column prop="date" label="日期" width="180"></el-table-column>
@@ -61,9 +66,9 @@
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
       },
-      // handleNext(val) {
-      //   console.log(`下一页: ${val}`);
-      // }
+      add() {
+        router.push('/test/add')
+      }
     }
   }
 </script>

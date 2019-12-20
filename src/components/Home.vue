@@ -9,14 +9,9 @@
       </el-row>
     </el-header>
     <el-container class="main-content">
-      <LeftMenu :isCollapse="isCollapse"/>
+      <LeftMenu :isCollapse="isCollapse" ref="LeftMenu"></LeftMenu>
       <el-main>
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item>首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        </el-breadcrumb>
-        <Lists />
+        <router-view></router-view>
       </el-main>
     </el-container>
     <el-footer>Footer</el-footer>
@@ -24,12 +19,10 @@
 </template>
 
 <script>
-  import LeftMenu from './Menu.vue';
-  import Lists from './Lists.vue';
+  import LeftMenu from './LeftMenu.vue';
   export default {
     components: {
-      LeftMenu,
-      Lists
+      LeftMenu
     },
     data() {
       return {

@@ -1,19 +1,30 @@
-# admin
+# vue-admin
 
-## Project setup
+## 项目安装步骤
+
+### 第一步
+```
+run git clone project
+```
+
+### 第二步安装相关依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 开发环境运行以下命令
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包发布运行如下命令
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 组件使用示例
+
+### vue-route 路由组件的使用
+```javascript
+
+```
