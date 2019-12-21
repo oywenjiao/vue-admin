@@ -11,7 +11,9 @@
     <el-container class="main-content">
       <LeftMenu :isCollapse="isCollapse" ref="LeftMenu"></LeftMenu>
       <el-main>
-        <router-view></router-view>
+        <transition name="fade-transform" mode="out-in">
+          <router-view :key="key" />
+        </transition>
       </el-main>
     </el-container>
     <el-footer>Footer</el-footer>
@@ -21,6 +23,11 @@
 <script>
   import LeftMenu from './LeftMenu.vue';
   export default {
+    computed: {
+      key() {
+        return this.$route.path
+      }
+    },
     components: {
       LeftMenu
     },

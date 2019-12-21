@@ -1,11 +1,13 @@
 <template>
-    <el-menu :default-openeds="[]"
-             background-color="#EFEEF0"
-             class="el-menu-vertical-demo"
-             text-color="#333"
-             active-text-color="#409EFF"
-             :collapse="isCollapse">
-        <el-menu-item index="0" @click="routerChange('/')">
+    <el-menu
+        :default-active="activeMenu"
+        background-color="#EFEEF0"
+        class="el-menu-vertical-demo"
+        text-color="#333"
+        active-text-color="#409EFF"
+        :collapse="isCollapse"
+    >
+        <el-menu-item index="/" @click="routerChange('/')">
             <i class="el-icon-s-home"></i>
             <span slot="title">首页</span>
         </el-menu-item>
@@ -14,7 +16,7 @@
                 <i :class="[secMenu.icon]"></i>
                 <span slot="title">{{secMenu.title}}</span>
             </template>
-            <el-menu-item :index="item.id" v-for="(item, i) in secMenu.children" @click="routerChange(item.url)">{{item.title}}</el-menu-item>
+            <el-menu-item :index="item.url" v-for="(item, i) in secMenu.children" @click="routerChange(item.url)">{{item.title}}</el-menu-item>
         </el-submenu>
     </el-menu>
 </template>
@@ -22,6 +24,17 @@
 <script>
     export default {
         props: ["isCollapse"],
+        computed: {
+            activeMenu() {
+                const route = this.$route
+                const { meta, path } = route
+                // if set path, the sidebar will highlight the path you set
+                if (meta.activeMenu) {
+                    return meta.activeMenu
+                }
+                return path
+            },
+        },
         data() {
             let menuData = [
                 {

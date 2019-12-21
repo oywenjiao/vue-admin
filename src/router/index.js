@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from "../components/Home.vue";
 import Refresh from "../components/Refresh.vue";
-import Welcome from "../views/welcome.vue";
+
 import userList from "../views/user/list.vue";
 import userAdd from "../views/user/add.vue";
 import orderList from "../views/order/list.vue";
@@ -17,7 +17,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: Welcome,
+        component: () => import('@/views/welcome.vue'),
         name: 'welcome'
       }
     ]
@@ -58,9 +58,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash',
-  // base: process.env.BASE_URL,
-  base: __dirname,
+  mode: 'history',
   routes
 })
 

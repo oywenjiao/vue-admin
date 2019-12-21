@@ -1,5 +1,9 @@
 const path = require('path')
 
+function resolve(dir) {
+    return path.join(__dirname, dir)
+}
+
 module.exports = {
     // baseUrl从 Vue CLI 3.3 起已弃用，请使用publicPath
     // 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 https://www.my-app.com/。
@@ -70,7 +74,7 @@ module.exports = {
                 alias: {
                     '@': path.resolve(__dirname, './src'),
                     '@c': path.resolve(__dirname, './src/components'),
-                    '@p': path.resolve(__dirname, './src/pages')
+                    '@v': path.resolve(__dirname, './src/views')
                 } // 别名配置
             }
         })
