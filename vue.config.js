@@ -68,16 +68,19 @@ module.exports = {
             // 开发环境
             config.mode = 'development'
         }
-        Object.assign(config, {
-            // 开发生产共同配置
-            resolve: {
-                alias: {
-                    '@': path.resolve(__dirname, './src'),
-                    '@c': path.resolve(__dirname, './src/components'),
-                    '@v': path.resolve(__dirname, './src/views')
-                } // 别名配置
+        config.resolve = { // 配置解析别名
+            extensions: ['.js', '.json', '.vue'],
+            alias: {
+                '@': path.resolve(__dirname, './src'),
+                'components': path.resolve(__dirname, './src/components'),
+                'common': path.resolve(__dirname, './src/common'),
+                'api': path.resolve(__dirname, './src/api'),
+                'router': path.resolve(__dirname, './src/router'),
+                'views': path.resolve(__dirname, './src/views'),
+                'data': path.resolve(__dirname, './src/data'),
+                'public': path.resolve(__dirname, 'public')
             }
-        })
+        }
     },
 
     // 所有 webpack-dev-server 的选项都支持。

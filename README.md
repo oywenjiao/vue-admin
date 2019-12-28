@@ -28,3 +28,8 @@ npm run build
 ```javascript
 
 ```
+
+### vuex 组件
+```
+详情见 src 目录下的sotre目录
+```

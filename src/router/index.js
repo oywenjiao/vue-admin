@@ -8,58 +8,69 @@ import userList from "../views/user/list.vue";
 import userAdd from "../views/user/add.vue";
 import orderList from "../views/order/list.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+import Layout from '@/layout';
 
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: Layout,
+    redirect: '/welcome',
     children: [
       {
-        path: '',
-        component: () => import('@/views/welcome.vue'),
-        name: 'welcome'
+        path: 'welcome',
+        name: 'Welcome',
+        component: () => import('@/views/welcome'),
+        meta: { title: 'Welcome' }
       }
     ]
   },
-  {
+  /*{
     path: '/',
     component: Home,
     children: [
       { path: '/refresh', component: Refresh, name: 'refresh' }
     ]
-  },
+  },*/
   {
-    path: '/',
-    component: Home,
+    path: '/user',
+    component: Layout,
+    meta: { title: '用户管理' },
     children: [
       {
-        path: 'user/list',
+        path: 'list',
         component: userList,
-        name: 'userList'
+        name: 'userList',
+        meta: { title: '用户列表' }
       },
       {
-        path: 'user/add',
-        component: userAdd
+        path: 'add',
+        name: 'addUser',
+        component: () => import('@/views/user/add'),
+        meta: { title: '新增用户' }
       }
     ]
   },
   {
-    path: '/',
-    component: Home,
+    path: '/order',
+    component: Layout,
+    meta: { title: '订单管理' },
     children: [
       {
-        path: 'order/list',
-        component: orderList,
-        name: 'orderList'
-      }
+        path: 'list',
+        component: () => import('@/views/order/list'),
+        name: 'orderList',
+        meta: { title: '订单列表' },
+        children: []
+      },
     ]
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   routes
-})
+});
 
 export default router
