@@ -22,7 +22,7 @@ const routes = [
         path: 'welcome',
         name: 'Welcome',
         component: () => import('@/views/welcome'),
-        meta: { title: 'Welcome' }
+        meta: { title: '首页', icon: 'svg-icon el-icon-s-home' }
       }
     ]
   },
@@ -36,7 +36,7 @@ const routes = [
   {
     path: '/user',
     component: Layout,
-    meta: { title: '用户管理' },
+    meta: { title: '用户管理', icon: 'svg-icon el-icon-s-custom' },
     children: [
       {
         path: 'list',
@@ -55,7 +55,7 @@ const routes = [
   {
     path: '/order',
     component: Layout,
-    meta: { title: '订单管理' },
+    meta: { title: '订单管理', icon: 'svg-icon el-icon-s-goods' },
     children: [
       {
         path: 'list',

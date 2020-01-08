@@ -18,6 +18,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     import SidebarItem from './SidebarItem'
     import variables from '@/styles/variables.scss'
     export default {
@@ -25,6 +26,9 @@
             SidebarItem
         },
         computed: {
+            ...mapGetters([
+                'sidebar'
+            ]),
             routes() {
                 return this.$router.options.routes
             },
@@ -41,7 +45,7 @@
                 return variables
             },
             isCollapse() {
-                return false
+                return !this.sidebar.opened
             }
         }
     }

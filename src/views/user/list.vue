@@ -1,9 +1,5 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="日期">
         <el-input v-model="formInline.date" placeholder="日期"></el-input>
@@ -31,11 +27,10 @@
       <el-table-column prop="phone" label="手机" width="180"></el-table-column>
       <el-table-column prop="address" label="地址"></el-table-column>
     </el-table>
-    <el-pagination
-            background
-            layout="total, prev, pager, next, jumper"
-            :total="1000"
-            @current-change="handleCurrentChange">
+    <el-pagination background
+                   layout="total, prev, pager, next, jumper"
+                   :total="1000"
+                   @current-change="handleCurrentChange">
     </el-pagination>
   </div>
 </template>
