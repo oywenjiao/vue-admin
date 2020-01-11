@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app-container">
         欢迎页内容{{$store.state.user.count}}
         <el-button type="primary" @click="addAction">自增</el-button>
         <el-button type="primary" @click="reduceAction">自减</el-button>
@@ -7,11 +7,9 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex';
     export default {
         name: "welcome",
         methods: {
-            ...mapMutations(['add', 'reduce']),
             addAction() {
                 this.$store.dispatch('user/addAction');
             },

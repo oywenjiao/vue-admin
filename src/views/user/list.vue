@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-container">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="日期">
         <el-input v-model="formInline.date" placeholder="日期"></el-input>
@@ -19,7 +19,6 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">查询</el-button>
       </el-form-item>
-      <el-button type="primary" @click="add">添加数据</el-button>
     </el-form>
     <el-table :data="tableData" border style="width: 100%;">
       <el-table-column prop="date" label="日期" width="180"></el-table-column>
@@ -27,10 +26,7 @@
       <el-table-column prop="phone" label="手机" width="180"></el-table-column>
       <el-table-column prop="address" label="地址"></el-table-column>
     </el-table>
-    <el-pagination background
-                   layout="total, prev, pager, next, jumper"
-                   :total="1000"
-                   @current-change="handleCurrentChange">
+    <el-pagination :small="device==='mobile'" background :layout="layout" :pager-count="5" :total="1000" @current-change="handleCurrentChange">
     </el-pagination>
   </div>
 </template>
@@ -54,6 +50,18 @@
         tableData: Array(15).fill(item)
       }
     },
+    computed: {
+      device() {
+        return this.$store.state.app.device
+      },
+      layout() {
+        if (this.device !== 'mobile') {
+          return 'total, prev, pager, next, jumper';
+        } else {
+          return 'prev, pager, next';
+        }
+      }
+    },
     methods: {
       onSubmit() {
         console.log(this.formInline);
@@ -72,7 +80,7 @@
 <style>
   .demo-form-inline {
     text-align: left;
-    margin-top: 20px;
+    margin: 20px auto;
   }
   .el-pagination {
     margin: 20px auto;
