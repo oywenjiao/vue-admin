@@ -12,7 +12,7 @@ const name = defaultSettings.title || 'vue Element Admin'; // 页面title属性
 const port = process.env.port || process.env.npm_config_port || 8088;
 
 module.exports = {
-    publicPath: '/',
+    publicPath: './',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development',
@@ -20,14 +20,11 @@ module.exports = {
     devServer: {
         port: port,
         open: true,
-        overlay: {
-            warnings: false,
-            errors: true
-        },
         proxy: {
             "/api": {
-                target: "http://myapi.example", // 本地模拟数据服务器
+                target: "http://blog.test/api",
                 changeOrigin: true,
+                ws: true,
                 pathRewrite: {
                     "^/api": "" // 去掉接口地址中的api字符串
                 }

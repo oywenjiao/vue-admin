@@ -31,6 +31,7 @@ let fakeRouter = {
 
 };
 
+// 定义白名单列表
 const whiteList = ['/login', '/auth-redirect'];
 
 router.beforeEach(async(to, from, next) => {
@@ -40,7 +41,6 @@ router.beforeEach(async(to, from, next) => {
     const hasToken = getToken();
 
     if (hasToken) { //不加这个判断，路由会陷入死循环
-        console.log('走的这里');
         if (!getObjArr('router')) {
             // axios.get('https://www.easy-mock.com/mock/5a5da330d9b48c260cb42ca8/example/antrouter').then(res => {
             console.log('beforeEach  getRouter')
@@ -55,13 +55,11 @@ router.beforeEach(async(to, from, next) => {
             routerGo(to, next)
         }
     } else {
-        console.log('还是走的这里');
         if (whiteList.indexOf(to.path) !== -1) {
-            // in the free login whitelist, go directly
-            console.log('然后进入这里');
+            // 在白名单内的路由直接进入
             next()
         } else {
-            // other pages that do not have permission to access are redirected to the login page.
+            // 未登录状态跳转到登录页.
             next(`/login?redirect=${to.path}`);
             NProgress.done()
         }

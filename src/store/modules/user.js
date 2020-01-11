@@ -1,3 +1,4 @@
+import request from "@/utils/request"
 
 // 状态值
 const state = {
@@ -24,6 +25,24 @@ const actions = {
     },
     reduceAction: ({commit}) => {
         commit('reduce')
+    },
+    login: ({commit}, userInfo) => {
+        const { username, password } = userInfo;
+        return new Promise((resolve, reject) => {
+            request({
+                url: '/api/login',
+                method: 'post',
+                data: {
+                    username: username.trim(),
+                    password: password
+                }
+            }).then(response => {
+                console.log('返回结果',response);
+                resolve(response)
+            }).catch(error => {
+                reject(error)
+            })
+        })
     }
 };
 

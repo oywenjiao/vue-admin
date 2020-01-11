@@ -52,14 +52,6 @@
                     <span>Username : admin</span>
                     <span>Password : any</span>
                 </div>
-                <div class="tips">
-                    <span style="margin-right:18px;">Username : editor</span>
-                    <span>Password : any</span>
-                </div>
-
-                <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-                    Or connect with
-                </el-button>
             </div>
         </el-form>
 
@@ -82,14 +74,14 @@
         data() {
             const validateUsername = (rule, value, callback) => {
                 if (!validUsername(value)) {
-                    callback(new Error('Please enter the correct user name'))
+                    callback(new Error('请输入正确的用户名'))
                 } else {
                     callback()
                 }
             };
             const validatePassword = (rule, value, callback) => {
                 if (value.length < 6) {
-                    callback(new Error('The password can not be less than 6 digits'))
+                    callback(new Error('密码不能少于6位'))
                 } else {
                     callback()
                 }
@@ -157,14 +149,14 @@
                         this.loading = true;
                         this.$store.dispatch('user/login', this.loginForm)
                             .then(() => {
-                                this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+                                // this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
                                 this.loading = false
                             })
                             .catch(() => {
                                 this.loading = false
                             })
                     } else {
-                        console.log('error submit!!')
+                        console.log('error submit!!');
                         return false
                     }
                 })
