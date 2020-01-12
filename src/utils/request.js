@@ -12,7 +12,6 @@ const service = axios.create({
 // 添加请求拦截器
 service.interceptors.request.use((config) => {
     // 在发送请求前配置数据
-    console.log('请求参数', config);
     return config;
 }, error => {
     return Promise.reject(error)

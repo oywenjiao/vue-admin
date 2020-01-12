@@ -12,7 +12,7 @@ const name = defaultSettings.title || 'vue Element Admin'; // 页面title属性
 const port = process.env.port || process.env.npm_config_port || 8088;
 
 module.exports = {
-    publicPath: './',
+    publicPath: '/',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development',
@@ -22,7 +22,7 @@ module.exports = {
         open: true,
         proxy: {
             "/api": {
-                target: "http://blog.test/api",
+                target: "http://adminapi.test/api",
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
