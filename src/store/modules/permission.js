@@ -4,13 +4,17 @@ import { constantRoutes } from '@/router'
 
 const state = {
     routes: [],
-    addRoutes: []
+    addRoutes: [],
+    roles: [],
 };
 
 const mutations = {
     SET_ROUTES: (state, routes) => {
         state.addRoutes = routes;
         state.routes = constantRoutes.concat(routes);
+    },
+    SET_ROLES: (state, roles) => {
+        state.roles = roles
     }
 };
 
@@ -57,6 +61,8 @@ const actions = {
             const asyncRoutes = [];
             generaMenu(asyncRoutes, loadMenuData)
             commit('SET_ROUTES', asyncRoutes)
+            commit('SET_ROLES', ['admin']);
+            console.log('设置roles')
             resolve(state.routes)
         })
     }

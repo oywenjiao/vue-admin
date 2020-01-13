@@ -37,7 +37,7 @@ export const constantRoutes = [
 ];
 
 const createRouter = () => new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes: constantRoutes
 });
 

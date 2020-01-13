@@ -4,7 +4,7 @@ const getters = {
         return state.count += 100;
     },
     sidebar: state => state.app.sidebar,
-    roles: state => state.user.roles,
+    roles: state => state.permission.roles,
     permission_routes: state => state.permission.routes,
 };
 

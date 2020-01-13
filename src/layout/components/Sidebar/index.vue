@@ -34,7 +34,7 @@
                 return this.$router.options.routes
             },
             activeMenu() {
-                console.log(this.$store.getters.permission_routes);
+                // console.log(this.$store.getters.permission_routes);
                 const route = this.$route
                 const { meta, path } = route
                 // if set path, the sidebar will highlight the path you set

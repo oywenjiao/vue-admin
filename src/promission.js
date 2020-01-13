@@ -27,37 +27,28 @@ router.beforeEach(async(to, from, next) => {
     if (hasToken) {
         if (to.path === '/login') {
             // if is logged in, redirect to the home page
-            next({ path: '/' })
+            next()
             NProgress.done()
         } else {
-            try {
-                const accessRoutes = await store.dispatch('permission/generateRoutes');
-                /*const accesRoutes = {
-                    path: '/user',
-                    component: Layout,
-                    meta: {
-                        title: "用户管理",
-                        icon: "svg-icon el-icon-s-custom"
-                    },
-                    children: [
-                        {
-                            path: "list",
-                            component: import('@/views/user/list'),
-                            meta: {
-                                "title": '用户列表',
-                            }
-                        }
-                    ]
-                }*/
-                console.log(to.path)
-                router.addRoutes(accessRoutes);
-                NProgress.done();
+            const hasRoles = store.getters.roles && store.getters.roles.length > 0;
+            console.log(store);
+            if (hasRoles) {
+                console.log('1111');
                 next()
-            } catch (error) {
-                await store.dispatch('user/resetToken');
-                Message.error(error || 'Has Error');
-                next(`/login`);
-                NProgress.done()
+            } else {
+                try {
+                    const accessRoutes = await store.dispatch('permission/generateRoutes');
+                    console.log('还进入这里吗')
+                    router.addRoutes(accessRoutes);
+                    console.log(accessRoutes)
+                    NProgress.done();
+                    next({ ...to, replace: true })
+                } catch (error) {
+                    await store.dispatch('user/resetToken');
+                    Message.error(error || 'Has Error');
+                    next(`/login`);
+                    NProgress.done()
+                }
             }
         }
 
