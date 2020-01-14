@@ -33,3 +33,8 @@ npm run build
 ```
 详情见 src 目录下的sotre目录
 ```
+
+### url 的正则表达式
+```javascript
+const pathToRegexp = require('path-to-regexp');
+```

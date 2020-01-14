@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import pathToRegexp from 'path-to-regexp'
+const pathToRegexp = require('path-to-regexp');
 
 export default {
   data() {
@@ -33,7 +33,7 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
+        matched = [{ path: '/', meta: { title: '首页' }}].concat(matched)
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
@@ -53,6 +53,7 @@ export default {
     },
     handleLink(item) {
       const { redirect, path } = item
+        console.log(item);
       if (redirect) {
         this.$router.push(redirect)
         return
